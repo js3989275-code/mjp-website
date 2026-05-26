@@ -376,6 +376,17 @@ transform:scale(1.08);
 </head>
 
 <body>
+<script>
+
+let password = prompt("Enter Admin Password");
+
+if(password !== "AsusKingofGaming"){
+
+document.body.innerHTML="Access Denied";
+
+}
+
+</script>
 
 <!-- HEADER -->
 
@@ -713,6 +724,25 @@ let email=document.getElementById("email").value;
 
 let msg=document.getElementById("msg");
 
+if(phone.length < 10){
+
+msg.style.color="red";
+
+msg.innerText="Enter valid phone number";
+
+return;
+
+}
+
+if(age < 15){
+
+msg.style.color="red";
+
+msg.innerText="Minimum age is 15";
+
+return;
+
+}
 if(!first || !last || !age || !phone || !email){
 
 msg.style.color="red";

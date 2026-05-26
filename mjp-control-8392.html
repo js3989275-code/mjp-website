@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MJP Admin Panel</title>
+
+<style>
+
+body{
+background:#0a0a0a;
+color:white;
+font-family:Arial,sans-serif;
+padding:20px;
+}
+
+h1{
+text-align:center;
+margin-bottom:20px;
+color:#00ff88;
+}
+
+.table-box{
+overflow-x:auto;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+background:#111827;
+border-radius:10px;
+overflow:hidden;
+}
+
+th,td{
+padding:12px;
+border-bottom:1px solid #333;
+text-align:left;
+}
+
+th{
+background:#00c2ff;
+color:black;
+}
+
+tr:hover{
+background:#1f2937;
+}
+
+button{
+padding:8px 14px;
+border:none;
+border-radius:8px;
+background:red;
+color:white;
+cursor:pointer;
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>🚀 MJP Admin Panel</h1>
+
+<div class="table-box">
+
+<table>
+
+<thead>
+
+<tr>
+<th>Name</th>
+<th>Age</th>
+<th>Phone</th>
+<th>Email</th>
+<th>Delete</th>
+</tr>
+
+</thead>
+
+<tbody id="memberTable">
+
+</tbody>
+
+</table>
+
+</div>
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+getFirestore,
+collection,
+getDocs,
+deleteDoc,
+doc
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBpb1FlminsUwyPQqxWQyHQXn4Ph1Hh28I",
+  authDomain: "mjp7-f828d.firebaseapp.com",
+  projectId: "mjp7-f828d",
+  storageBucket: "mjp7-f828d.firebasestorage.app",
+  messagingSenderId: "15847804029",
+  appId: "1:15847804029:web:7aec60ff4312a8513af514",
+  measurementId: "G-30QCEGRBV9"
+};
+
+const app = initializeApp(firebaseConfig);
+
+const db = getFirestore(app);
+
+const table = document.getElementById("memberTable");
+
+async function loadMembers(){
+
+table.innerHTML="";
+
+const querySnapshot = await getDocs(
+collection(db,"mjpMembers")
+);
+
+querySnapshot.forEach((docSnap)=>{
+
+const data = docSnap.data();
+
+table.innerHTML += `
+
+<tr>
+
+<td>${data.first} ${data.last}</td>
+
+<td>${data.age}</td>
+
+<td>${data.phone}</td>
+
+<td>${data.email}</td>
+
+<td>
+<button onclick="deleteMember('${docSnap.id}')">
+Delete
+</button>
+</td>
+
+</tr>
+
+`;
+
+});
+
+}
+
+window.deleteMember = async function(id){
+
+await deleteDoc(doc(db,"mjpMembers",id));
+
+loadMembers();
+
+}
+
+loadMembers();
+
+</script>
+
+</body>
+</html>
