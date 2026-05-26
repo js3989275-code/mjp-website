@@ -636,7 +636,7 @@ India’s Fast Growing Modification Community
 
 <!-- FIREBASE SCRIPT -->
 
-<script type="module">
+ <script type="module">
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
@@ -646,8 +646,7 @@ collection,
 query,
 where,
 getDocs,
-addDoc,
-getDocs as getAllDocs
+addDoc
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -663,18 +662,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 const db = getFirestore(app);
-async function loadMemberCount(){
 
-const snapshot = await getAllDocs(
-collection(db,"mjpMembers")
-);
-
-document.getElementById("memberCount")
-.innerText = snapshot.size;
-
-}
-
-loadMemberCount();
 window.scrollToForm = function(){
 
 document.getElementById("joinForm")
@@ -682,7 +670,7 @@ document.getElementById("joinForm")
 behavior:"smooth"
 });
 
-}
+};
 
 window.shareMJP = async function(){
 
@@ -702,15 +690,19 @@ alert("Link copied successfully 🚀");
 
 }
 
-}
+};
 
 window.join = async function(){
 
-let first=document.getElementById("first").value;
-let last=document.getElementById("last").value;
-let age=document.getElementById("age").value;
-let phone=document.getElementById("phone").value;
-let email=document.getElementById("email").value;
+let first=document.getElementById("first").value.trim();
+
+let last=document.getElementById("last").value.trim();
+
+let age=document.getElementById("age").value.trim();
+
+let phone=document.getElementById("phone").value.trim();
+
+let email=document.getElementById("email").value.trim();
 
 let msg=document.getElementById("msg");
 
@@ -733,19 +725,24 @@ msg.innerText="Minimum age is 15";
 return;
 
 }
+
 if(!first || !last || !age || !phone || !email){
 
 msg.style.color="red";
+
 msg.innerText="Please fill all details first!";
+
 return;
 
 }
 
+try{
+
 const usersRef = collection(db,"mjpMembers");
 
-const emailQuery = query(usersRef, where("email", "==", email));
+const emailQuery = query(usersRef, where("email","==",email));
 
-const phoneQuery = query(usersRef, where("phone", "==", phone));
+const phoneQuery = query(usersRef, where("phone","==",phone));
 
 const emailSnap = await getDocs(emailQuery);
 
@@ -762,20 +759,37 @@ return;
 }
 
 await addDoc(usersRef,{
+
 first,
 last,
 age,
 phone,
 email,
 joined:new Date()
+
 });
 
 msg.style.color="#00ff88";
 
-msg.innerText=
-"🎉 Congratulations! You joined the MJP community!";
+msg.innerText="🎉 Congratulations! You joined the MJP community!";
+
+document.getElementById("first").value="";
+document.getElementById("last").value="";
+document.getElementById("age").value="";
+document.getElementById("phone").value="";
+document.getElementById("email").value="";
+
+}catch(error){
+
+console.log(error);
+
+msg.style.color="red";
+
+msg.innerText="Something went wrong!";
 
 }
+
+};
 
 </script>
 
