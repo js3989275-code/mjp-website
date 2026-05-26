@@ -550,8 +550,12 @@ Twitter
 </a>
 
 <div class="members">
-100000+ Members Joined MJP 🚀<br>
+
+<span id="memberCount">0</span>+ Members Joined MJP 🚀
+<br>
+
 India’s Fast Growing Modification Community
+
 </div>
 
 </div>
@@ -568,7 +572,8 @@ collection,
 query,
 where,
 getDocs,
-addDoc
+addDoc,
+getDocs as getAllDocs
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -584,7 +589,18 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 const db = getFirestore(app);
+async function loadMemberCount(){
 
+const snapshot = await getAllDocs(
+collection(db,"mjpMembers")
+);
+
+document.getElementById("memberCount")
+.innerText = snapshot.size;
+
+}
+
+loadMemberCount();
 window.scrollToForm = function(){
 
 document.getElementById("joinForm")
