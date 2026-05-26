@@ -328,6 +328,43 @@ height:450px;
 
 }
 
+/* FLOATING BUTTON */
+
+.floating-btn{
+
+position:fixed;
+
+bottom:20px;
+
+right:20px;
+
+background:#00ff88;
+
+color:black;
+
+padding:14px 18px;
+
+border-radius:50px;
+
+font-weight:bold;
+
+font-size:15px;
+
+cursor:pointer;
+
+box-shadow:0 0 15px rgba(0,255,136,0.5);
+
+z-index:999;
+
+transition:0.3s;
+
+}
+
+.floating-btn:hover{
+
+transform:scale(1.08);
+
+}
 </style>
 </head>
 
@@ -686,5 +723,12 @@ msg.innerText=
 
 </script>
 
+<!-- FLOATING JOIN BUTTON -->
+
+<div class="floating-btn" onclick="scrollToForm()">
+
+🚀 Join MJP
+
+</div>
 </body>
 </html>
