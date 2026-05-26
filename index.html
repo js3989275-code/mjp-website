@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MJP - Modification Janta Party</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#0a0a0a,#111827,#000);
+color:white;
+overflow-x:hidden;
+}
+
+/* HEADER */
+
+header{
+text-align:center;
+padding:30px 15px;
+}
+
+.logo{
+font-size:55px;
+font-weight:bold;
+letter-spacing:4px;
+color:#00c2ff;
+}
+
+.title{
+font-size:20px;
+margin-top:5px;
+font-weight:bold;
+}
+
+.subtitle{
+font-size:14px;
+color:#bbb;
+margin-top:10px;
+line-height:1.6;
+max-width:700px;
+margin-left:auto;
+margin-right:auto;
+}
+
+/* BUTTONS */
+
+.btn-group{
+margin-top:20px;
+}
+
+.btn{
+display:inline-block;
+margin:8px;
+padding:12px 20px;
+border-radius:10px;
+font-weight:bold;
+border:none;
+cursor:pointer;
+text-decoration:none;
+transition:0.3s;
+}
+
+.join{
+background:#00ff88;
+color:black;
+}
+
+.share{
+background:#00c2ff;
+color:black;
+}
+
+.btn:hover{
+transform:scale(1.05);
+}
+
+/* HERO IMAGE */
+
+.hero-img{
+width:90%;
+display:block;
+margin:20px auto;
+border-radius:20px;
+box-shadow:0 0 20px rgba(0,194,255,0.4);
+object-fit:cover;
+}
+
+/* CONTAINER */
+
+.container{
+padding:20px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:1fr;
+gap:15px;
+}
+
+/* CARDS */
+
+.card{
+background:rgba(255,255,255,0.06);
+padding:20px;
+border-radius:16px;
+border:1px solid rgba(255,255,255,0.1);
+backdrop-filter:blur(10px);
+transition:0.3s;
+}
+
+.card:hover{
+transform:translateY(-5px);
+}
+
+.card h3{
+margin-bottom:12px;
+color:#00c2ff;
+font-size:20px;
+text-align:center;
+}
+
+.card p{
+color:#ddd;
+line-height:1.8;
+font-size:14px;
+text-align:center;
+}
+
+/* TRENDING */
+
+.trending{
+text-align:center;
+padding:20px;
+}
+
+.trending h2{
+margin-bottom:20px;
+color:#00ff88;
+font-size:28px;
+}
+
+.cars{
+display:grid;
+grid-template-columns:1fr;
+gap:15px;
+}
+
+.cars img{
+width:90%;
+margin:auto;
+border-radius:16px;
+box-shadow:0 0 15px rgba(255,255,255,0.1);
+height:230px;
+object-fit:cover;
+transition:0.3s;
+}
+
+.cars img:hover{
+transform:scale(1.03);
+}
+
+/* BIKE SECTION */
+
+.bike-section{
+padding:20px;
+text-align:center;
+}
+
+.bike-section h2{
+margin-bottom:20px;
+color:#00c2ff;
+font-size:28px;
+}
+
+.bike-grid{
+display:grid;
+grid-template-columns:1fr;
+gap:20px;
+}
+
+.bike-card{
+background:rgba(255,255,255,0.06);
+padding:15px;
+border-radius:16px;
+border:1px solid rgba(255,255,255,0.1);
+}
+
+.bike-card img{
+width:100%;
+height:240px;
+object-fit:cover;
+border-radius:14px;
+margin-bottom:12px;
+}
+
+.bike-card p{
+color:#ddd;
+font-size:15px;
+line-height:1.7;
+}
+
+/* ELIGIBILITY */
+
+.eligibility{
+padding:20px;
+}
+
+.eligibility .card{
+max-width:900px;
+margin:auto;
+}
+
+.eligibility p{
+font-size:16px;
+line-height:2;
+}
+
+/* FORM */
+
+.form{
+background:rgba(255,255,255,0.06);
+margin:20px;
+padding:20px;
+border-radius:18px;
+border:1px solid rgba(255,255,255,0.1);
+max-width:700px;
+margin-left:auto;
+margin-right:auto;
+}
+
+.form h2{
+margin-bottom:15px;
+color:#00ff88;
+text-align:center;
+}
+
+input{
+width:100%;
+padding:12px;
+margin:8px 0;
+border:none;
+border-radius:10px;
+outline:none;
+background:#1f2937;
+color:white;
+font-size:15px;
+}
+
+button{
+width:100%;
+padding:14px;
+background:#00ff88;
+border:none;
+border-radius:10px;
+font-weight:bold;
+cursor:pointer;
+margin-top:10px;
+font-size:15px;
+}
+
+#msg{
+margin-top:12px;
+font-weight:bold;
+text-align:center;
+}
+
+/* SOCIAL */
+
+.social{
+text-align:center;
+padding:30px 15px;
+}
+
+.social h2{
+margin-bottom:15px;
+}
+
+.social a{
+display:inline-block;
+margin:10px;
+padding:12px 18px;
+background:#1f2937;
+border-radius:10px;
+color:white;
+text-decoration:none;
+transition:0.3s;
+}
+
+.social a:hover{
+background:#00c2ff;
+color:black;
+}
+
+.members{
+margin-top:20px;
+font-size:18px;
+color:#00ff88;
+line-height:1.8;
+}
+
+/* DESKTOP */
+
+@media(min-width:768px){
+
+.grid{
+grid-template-columns:repeat(3,1fr);
+}
+
+.cars{
+grid-template-columns:repeat(3,1fr);
+}
+
+.bike-grid{
+grid-template-columns:repeat(3,1fr);
+}
+
+.hero-img{
+height:450px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<header>
+
+<div class="logo">MJP</div>
+
+<div class="title">
+MODIFICATION JANTA PARTY
+</div>
+
+<div class="subtitle">
+Supporting safe and legal vehicle modification culture in India
+</div>
+
+<div class="btn-group">
+
+<button class="btn join" onclick="scrollToForm()">
+Join the Community
+</button>
+
+<button class="btn share" onclick="shareMJP()">
+Share MJP
+</button>
+
+</div>
+
+</header>
+
+<!-- HERO IMAGE -->
+
+<img 
+class="hero-img"
+src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=1400&q=80"
+/>
+
+<!-- INFO CARDS -->
+
+<div class="container">
+
+<div class="grid">
+
+<div class="card">
+<h3>🔥 What is MJP?</h3>
+<p>
+MJP is a growing modification community for people who love tuned bikes, modified cars, creativity, and automotive culture.
+</p>
+</div>
+
+<div class="card">
+<h3>🎯 Our Goal</h3>
+<p>
+Our goal is to support safe and responsible modification culture while building India's biggest enthusiast community.
+</p>
+</div>
+
+<div class="card">
+<h3>⚡ Community Values</h3>
+<p>
+Respect • Creativity • Passion • Innovation • Safe modifications • Real enthusiast culture.
+</p>
+</div>
+
+</div>
+
+</div>
+
+<!-- TRENDING -->
+
+<div class="trending">
+
+<h2>🔥 Trending MJP Culture</h2>
+
+<div class="cars">
+
+<img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1200&q=80">
+
+<img src="https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=1200&q=80">
+
+<img src="https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=1200&q=80">
+
+</div>
+
+</div>
+
+<!-- BIKE MODIFICATION -->
+
+<div class="bike-section">
+
+<h2>🏍 Bike Modification</h2>
+
+<div class="bike-grid">
+
+<div class="bike-card">
+
+<img src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=1200&q=80">
+
+<p>
+“Built with passion. Tuned for the streets. Every modification tells a story.”
+</p>
+
+</div>
+
+<div class="bike-card">
+
+<img src="https://images.unsplash.com/photo-1502744688674-c619d1586c9e?auto=format&fit=crop&w=1200&q=80">
+
+<p>
+“Modification is not just style — it’s personality on two wheels.”
+</p>
+
+</div>
+
+<div class="bike-card">
+
+<img src="https://images.unsplash.com/photo-1449426468159-d96dbf08f19f?auto=format&fit=crop&w=1200&q=80">
+
+<p>
+“Ride different. Think bold. Build your dream machine.”
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ELIGIBILITY -->
+
+<div class="eligibility">
+
+<div class="card">
+
+<h3>⚡ Eligibility to Join MJP</h3>
+
+<p>
+
+• Passion for modified bikes and tuned cars<br><br>
+
+• Respect for safe and legal vehicle modification culture<br><br>
+
+• Interest in creativity, customization, and automotive innovation<br><br>
+
+• Desire to connect with real enthusiasts across India
+
+</p>
+
+</div>
+
+</div>
+
+<!-- FORM -->
+
+<div class="form" id="joinForm">
+
+<h2>Join MJP Community</h2>
+
+<input id="first" placeholder="First Name">
+
+<input id="last" placeholder="Last Name">
+
+<input id="age" placeholder="Age">
+
+<input id="phone" placeholder="Phone Number">
+
+<input id="email" placeholder="Email">
+
+<button onclick="join()">
+Finish & Join
+</button>
+
+<div id="msg"></div>
+
+</div>
+
+<!-- SOCIAL -->
+
+<div class="social">
+
+<h2>Connect with MJP</h2>
+
+<a href="https://www.instagram.com/modification_janta_party?igsh=MzdlcnQyMGV4azA5" target="_blank">
+Instagram
+</a>
+
+<a href="https://x.com/ModificationMJP" target="_blank">
+Twitter
+</a>
+
+<div class="members">
+100000+ Members Joined MJP 🚀<br>
+India’s Fast Growing Modification Community
+</div>
+
+</div>
+
+<!-- FIREBASE SCRIPT -->
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+getFirestore,
+collection,
+query,
+where,
+getDocs,
+addDoc
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBpb1FlminsUwyPQqxWQyHQXn4Ph1Hh28I",
+  authDomain: "mjp7-f828d.firebaseapp.com",
+  projectId: "mjp7-f828d",
+  storageBucket: "mjp7-f828d.firebasestorage.app",
+  messagingSenderId: "15847804029",
+  appId: "1:15847804029:web:7aec60ff4312a8513af514",
+  measurementId: "G-30QCEGRBV9"
+};
+
+const app = initializeApp(firebaseConfig);
+
+const db = getFirestore(app);
+
+window.scrollToForm = function(){
+
+document.getElementById("joinForm")
+.scrollIntoView({
+behavior:"smooth"
+});
+
+}
+
+window.shareMJP = async function(){
+
+if(navigator.share){
+
+await navigator.share({
+title:"MJP Community",
+text:"Join Modification Janta Party 🚀",
+url:window.location.href
+});
+
+}else{
+
+navigator.clipboard.writeText(window.location.href);
+
+alert("Link copied successfully 🚀");
+
+}
+
+}
+
+window.join = async function(){
+
+let first=document.getElementById("first").value;
+let last=document.getElementById("last").value;
+let age=document.getElementById("age").value;
+let phone=document.getElementById("phone").value;
+let email=document.getElementById("email").value;
+
+let msg=document.getElementById("msg");
+
+if(!first || !last || !age || !phone || !email){
+
+msg.style.color="red";
+msg.innerText="Please fill all details first!";
+return;
+
+}
+
+const usersRef = collection(db,"mjpMembers");
+
+const emailQuery = query(usersRef, where("email", "==", email));
+
+const phoneQuery = query(usersRef, where("phone", "==", phone));
+
+const emailSnap = await getDocs(emailQuery);
+
+const phoneSnap = await getDocs(phoneQuery);
+
+if(!emailSnap.empty || !phoneSnap.empty){
+
+msg.style.color="orange";
+
+msg.innerText="This email or phone number is already in use!";
+
+return;
+
+}
+
+await addDoc(usersRef,{
+first,
+last,
+age,
+phone,
+email,
+joined:new Date()
+});
+
+msg.style.color="#00ff88";
+
+msg.innerText=
+"🎉 Congratulations! You joined the MJP community!";
+
+}
+
+</script>
+
+</body>
+</html>
