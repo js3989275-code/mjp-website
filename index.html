@@ -663,6 +663,19 @@ const app = initializeApp(firebaseConfig);
 
 const db = getFirestore(app);
 
+async function loadMemberCount(){
+
+const snapshot = await getDocs(
+collection(db,"mjpMembers")
+);
+
+document.getElementById("memberCount")
+.innerText = snapshot.size;
+
+}
+
+loadMemberCount();
+
 window.scrollToForm = function(){
 
 document.getElementById("joinForm")
