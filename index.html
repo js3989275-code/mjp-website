@@ -716,12 +716,22 @@ const db = getFirestore(app);
 
 async function loadMemberCount(){
 
+try{
+
 const snapshot = await getDocs(
 collection(db,"mjpMembers")
 );
 
+console.log("Members:", snapshot.size);
+
 document.getElementById("memberCount")
 .innerText = snapshot.size;
+
+}catch(error){
+
+console.log("Error:", error);
+
+}
 
 }
 
